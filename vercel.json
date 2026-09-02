@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build --prefix E_commerce",
+  "outputDirectory": "E_commerce/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
