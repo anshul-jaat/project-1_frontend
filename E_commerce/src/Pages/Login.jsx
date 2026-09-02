@@ -158,7 +158,7 @@ export default function Login() {
                   if (!forgotEmail) return;
                   setForgotLoading(true);
                   // Request OTP
-                  const res = await requestPasswordOtp();
+                  const res = await requestPasswordOtp(forgotEmail);
                   setForgotLoading(false);
                   if (res?.success) setForgotStep(2);
                 }}
@@ -198,7 +198,7 @@ export default function Login() {
                   e.preventDefault();
                   if (!forgotOtp || !newPassword) return;
                   setForgotLoading(true);
-                  const res = await changePassword(forgotOtp, newPassword);
+                  const res = await changePassword(forgotOtp, newPassword, forgotEmail);
                   setForgotLoading(false);
                   if (res?.success) {
                     setForgotModalOpen(false);

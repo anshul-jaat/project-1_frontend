@@ -167,12 +167,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Request password change OTP
-  const requestPasswordOtp = async () => {
+  // Request password change OTP (works for both logged in user & forgot password)
+  const requestPasswordOtp = async (email) => {
     try {
-      const res = await api.post("/users/password/request-otp");
+      const payload = email ? { email } : {};
+      const res = await api.post("/users/password/request-otp", payload);
       if (res.data?.success) {
-        info("Password change OTP sent to your email.");
+        info("Password reset OTP sent to your email.");
         return { success: true };
       }
     } catch (err) {
@@ -182,12 +183,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Change password
-  const changePassword = async (otp, newPassword) => {
+  // Change / reset password
+  const changePassword = async (otp, newPassword, email) => {
     try {
-      const res = await api.post("/users/password/change", { otp, newPassword });
+      const payload = { otp, newPassword, ...(email ? { email } : {}) };
+      const res = await api.post("/users/password/change", payload);
       if (res.data?.success) {
-        success("Password changed successfully!");
+        success("Password reset successfully!");
         return { success: true };
       }
     } catch (err) {
