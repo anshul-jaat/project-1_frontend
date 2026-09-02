@@ -13,10 +13,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Truck,
-  Sparkles,
   Tag,
   CheckCircle2,
-  MapPin,
   CreditCard,
   Building,
   Check,
@@ -49,9 +47,7 @@ export default function Cart() {
     country: "India",
   });
 
-  const defaultAddr = user?.address_list?.find((a) => a.isDefault) || user?.address_list?.[0];
-
-  const shippingFee = subtotal >= 100 || subtotal === 0 ? 0 : 15;
+  const shippingFee = subtotal >= 999 || subtotal === 0 ? 0 : 99;
   const discountAmount = Math.round((subtotal * discountPercent) / 100);
   const grandTotal = Math.max(0, subtotal - discountAmount + shippingFee);
 
@@ -211,11 +207,11 @@ export default function Cart() {
                     </h3>
                     <div className="flex items-center justify-center sm:justify-start gap-2 mt-1">
                       <span className="text-xs font-bold text-neutral-800 dark:text-neutral-200">
-                        ${effectivePrice} each
+                        ₹{Number(effectivePrice).toLocaleString("en-IN")} each
                       </span>
                       {hasDiscount && (
                         <span className="text-[11px] text-neutral-400 line-through">
-                          ${p.price}
+                          ₹{Number(p.price).toLocaleString("en-IN")}
                         </span>
                       )}
                     </div>
@@ -241,7 +237,7 @@ export default function Cart() {
                   {/* Item Total & Remove */}
                   <div className="flex sm:flex-col items-center justify-between sm:items-end gap-3 w-full sm:w-auto shrink-0 border-t sm:border-t-0 pt-3 sm:pt-0 border-neutral-100 dark:border-neutral-800">
                     <div className="text-base font-black text-neutral-950 dark:text-white">
-                      ${effectivePrice * item.quantity}
+                      ₹{Number(effectivePrice * item.quantity).toLocaleString("en-IN")}
                     </div>
                     <button
                       onClick={() => removeFromCart(p?._id || item.product)}
@@ -301,13 +297,15 @@ export default function Cart() {
               <div className="space-y-3 text-xs border-t border-neutral-100 dark:border-neutral-800 pt-4">
                 <div className="flex justify-between text-neutral-600 dark:text-neutral-400">
                   <span>Subtotal</span>
-                  <span className="font-bold text-neutral-900 dark:text-white">${subtotal}</span>
+                  <span className="font-bold text-neutral-900 dark:text-white">
+                    ₹{Number(subtotal).toLocaleString("en-IN")}
+                  </span>
                 </div>
 
                 {discountAmount > 0 && (
                   <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-semibold">
                     <span>Coupon Discount</span>
-                    <span>-\${discountAmount}</span>
+                    <span>-₹{Number(discountAmount).toLocaleString("en-IN")}</span>
                   </div>
                 )}
 
@@ -315,16 +313,16 @@ export default function Cart() {
                   <span>Estimated Shipping</span>
                   <span className="font-bold text-neutral-900 dark:text-white">
                     {shippingFee === 0 ? (
-                      <span className="text-emerald-500 font-bold uppercase text-[10px]">Free</span>
+                      <span className="text-emerald-500 font-bold uppercase text-[10px]">Free (Over ₹999)</span>
                     ) : (
-                      `$${shippingFee}`
+                      `₹${shippingFee}`
                     )}
                   </span>
                 </div>
 
                 <div className="flex justify-between items-baseline text-base font-black border-t border-neutral-100 dark:border-neutral-800 pt-4 text-neutral-950 dark:text-white">
                   <span>Total Amount</span>
-                  <span className="text-2xl">${grandTotal}</span>
+                  <span className="text-2xl">₹{Number(grandTotal).toLocaleString("en-IN")}</span>
                 </div>
               </div>
 
@@ -340,7 +338,7 @@ export default function Cart() {
               <div className="flex items-center justify-center gap-4 text-[11px] text-neutral-400 pt-2">
                 <div className="flex items-center gap-1">
                   <Truck className="w-3.5 h-3.5 text-amber-500" />
-                  <span>Fast Delivery</span>
+                  <span>Free Delivery over ₹999</span>
                 </div>
                 <span>•</span>
                 <div className="flex items-center gap-1">
@@ -458,10 +456,12 @@ export default function Cart() {
             <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 flex items-center justify-between text-xs">
               <div>
                 <span className="text-neutral-400">Grand Total:</span>
-                <div className="text-lg font-black text-neutral-950 dark:text-white">${grandTotal}</div>
+                <div className="text-lg font-black text-neutral-950 dark:text-white">
+                  ₹{Number(grandTotal).toLocaleString("en-IN")}
+                </div>
               </div>
               <span className="px-3 py-1 rounded-full text-emerald-700 bg-emerald-100 dark:bg-emerald-950/50 font-bold">
-                {shippingFee === 0 ? "Free Shipping" : "+$15 Shipping"}
+                {shippingFee === 0 ? "Free Shipping" : "+₹99 Shipping"}
               </span>
             </div>
 
@@ -509,7 +509,9 @@ export default function Cart() {
               </div>
               <div className="flex justify-between">
                 <span className="text-neutral-400">Total Paid:</span>
-                <span className="font-bold text-neutral-900 dark:text-white">${placedOrder.totalAmount}</span>
+                <span className="font-bold text-neutral-900 dark:text-white">
+                  ₹{Number(placedOrder.totalAmount).toLocaleString("en-IN")}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-neutral-400">Payment:</span>

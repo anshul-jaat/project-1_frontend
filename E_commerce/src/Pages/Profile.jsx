@@ -11,16 +11,12 @@ import {
   Plus,
   Trash2,
   CheckCircle2,
-  Clock,
-  Truck,
   ShieldCheck,
-  Check,
-  AlertCircle,
 } from "lucide-react";
 
 export default function Profile() {
   const { user, updateProfile, requestPasswordOtp, changePassword } = useAuth();
-  const { success, error, info } = useToast();
+  const { success, error } = useToast();
 
   const [activeTab, setActiveTab] = useState("profile");
 
@@ -622,7 +618,7 @@ export default function Profile() {
                             <div>
                               <span className="font-bold text-neutral-400 text-[10px] uppercase block">Placed On</span>
                               <span className="font-semibold text-neutral-700 dark:text-neutral-300">
-                                {new Date(order.createdAt).toLocaleDateString("en-US", {
+                                {new Date(order.createdAt).toLocaleDateString("en-IN", {
                                   month: "short",
                                   day: "numeric",
                                   year: "numeric",
@@ -633,7 +629,7 @@ export default function Profile() {
                             <div>
                               <span className="font-bold text-neutral-400 text-[10px] uppercase block">Total Amount</span>
                               <span className="text-base font-black text-neutral-950 dark:text-white">
-                                ${order.totalAmount}
+                                ₹{Number(order.totalAmount).toLocaleString("en-IN")}
                               </span>
                             </div>
 
@@ -656,11 +652,11 @@ export default function Profile() {
                                     {item.title}
                                   </h5>
                                   <p className="text-[11px] text-neutral-400">
-                                    Qty: {item.quantity} × ${item.price}
+                                    Qty: {item.quantity} × ₹{Number(item.price).toLocaleString("en-IN")}
                                   </p>
                                 </div>
                                 <div className="text-xs font-bold">
-                                  ${item.price * item.quantity}
+                                  ₹{Number(item.price * item.quantity).toLocaleString("en-IN")}
                                 </div>
                               </div>
                             ))}

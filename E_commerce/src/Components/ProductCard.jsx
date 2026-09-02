@@ -122,11 +122,11 @@ export default function ProductCard({ product, onQuickView }) {
           <div className="flex flex-col">
             <div className="flex items-baseline gap-1.5">
               <span className="text-lg font-black text-neutral-950 dark:text-white">
-                ${effectivePrice}
+                ₹{Number(effectivePrice).toLocaleString("en-IN")}
               </span>
               {hasDiscount && (
                 <span className="text-xs text-neutral-400 line-through">
-                  ${product.price}
+                  ₹{Number(product.price).toLocaleString("en-IN")}
                 </span>
               )}
             </div>

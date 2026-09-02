@@ -5,7 +5,6 @@ import { useCart } from "../context/CartContext";
 import {
   ShoppingBag,
   User,
-  ShieldCheck,
   LogOut,
   Search,
   Menu,
@@ -50,7 +49,7 @@ export default function Navbar({ onSearch, searchQuery }) {
       <div className="bg-gradient-to-r from-amber-500 via-rose-500 to-indigo-600 text-white text-xs font-semibold py-1.5 px-4 text-center tracking-wide flex items-center justify-center gap-2">
         <Sparkles className="w-3.5 h-3.5 animate-pulse" />
         <span>Grand Launch Special: Get 20% OFF using code <strong>SAVE20</strong> at checkout</span>
-        <span className="hidden sm:inline">• Free Express Shipping over $100</span>
+        <span className="hidden sm:inline">• Free Express Delivery over ₹999</span>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

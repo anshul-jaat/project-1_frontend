@@ -5,13 +5,9 @@ import Hero from "../Components/Hero";
 import ProductCard from "../Components/ProductCard";
 import ProductModal from "../Components/ProductModal";
 import {
-  SlidersHorizontal,
   Search,
   Sparkles,
   ArrowUpDown,
-  Filter,
-  RefreshCw,
-  Tag,
   Package,
 } from "lucide-react";
 

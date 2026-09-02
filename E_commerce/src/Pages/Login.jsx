@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
-import { ShoppingBag, ArrowRight, Lock, Mail, Eye, EyeOff, Sparkles, KeyRound } from "lucide-react";
+import { ShoppingBag, ArrowRight, Lock, Mail, Eye, EyeOff } from "lucide-react";
 
 export default function Login() {
   const { login, requestPasswordOtp, changePassword } = useAuth();
-  const { success, error } = useToast();
+  const { error } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
 

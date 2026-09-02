@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingBag, ArrowRight, ShieldCheck, Mail, Heart } from "lucide-react";
+import { ShoppingBag, ArrowRight, ShieldCheck, Mail } from "lucide-react";
 import { useToast } from "../context/ToastContext";
 
 export default function Footer() {

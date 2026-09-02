@@ -57,6 +57,21 @@ export default function Hero({ onCategorySelect }) {
             </Link>
           </div>
 
+          {/* Quick Category Pills */}
+          <div className="flex flex-wrap gap-2 pt-1">
+            {categories.map((c) => (
+              <button
+                key={c.name}
+                type="button"
+                onClick={() => onCategorySelect && onCategorySelect(c.name)}
+                className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/15 text-xs font-semibold text-neutral-300 border border-white/10 transition-colors flex items-center gap-1.5"
+              >
+                <span>{c.icon}</span>
+                <span>{c.name}</span>
+              </button>
+            ))}
+          </div>
+
           {/* Social Proof & Metrics */}
           <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-6 sm:gap-8 w-full max-w-lg">
             <div>
@@ -95,11 +110,11 @@ export default function Hero({ onCategorySelect }) {
                 </h3>
                 <div className="flex items-center justify-between mt-2">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-xl font-black text-amber-400">$249</span>
-                    <span className="text-xs text-neutral-400 line-through">$299</span>
+                    <span className="text-xl font-black text-amber-400">₹1,999</span>
+                    <span className="text-xs text-neutral-400 line-through">₹2,499</span>
                   </div>
                   <span className="text-xs font-semibold text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-500/30">
-                    Save \$50
+                    Save ₹500
                   </span>
                 </div>
               </div>
@@ -123,7 +138,7 @@ export default function Hero({ onCategorySelect }) {
       <div className="border-t border-white/10 bg-white/5 backdrop-blur-md px-6 py-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-medium text-neutral-300">
         <div className="flex items-center gap-2 justify-center">
           <Truck className="w-4 h-4 text-amber-400" />
-          <span>Free Express Shipping</span>
+          <span>Free Delivery over ₹999</span>
         </div>
         <div className="flex items-center gap-2 justify-center">
           <RefreshCcw className="w-4 h-4 text-amber-400" />

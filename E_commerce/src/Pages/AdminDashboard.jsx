@@ -8,25 +8,21 @@ import {
   Plus,
   Trash2,
   Edit,
-  DollarSign,
+  IndianRupee,
   Package,
   Users,
   ShoppingBag,
   TrendingUp,
-  Image as ImageIcon,
   X,
   Upload,
   AlertTriangle,
-  CheckCircle2,
-  Sparkles,
   RefreshCw,
   Search,
-  Check,
 } from "lucide-react";
 
 export default function AdminDashboard() {
-  const { user, isAdmin } = useAuth();
-  const { success, error, info } = useToast();
+  const { isAdmin } = useAuth();
+  const { success, error } = useToast();
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState("overview"); // overview, products, orders, users
@@ -439,30 +435,30 @@ export default function AdminDashboard() {
               {[
                 {
                   label: "Total Store Revenue",
-                  value: `$${stats?.totalRevenue || 0}`,
+                  value: `₹${Number(stats?.totalRevenue || 0).toLocaleString("en-IN")}`,
                   sub: "From delivered & active orders",
-                  icon: DollarSign,
+                  icon: IndianRupee,
                   color: "from-amber-500 to-rose-500",
                 },
                 {
-                  label: "Total Orders Placed",
-                  value: stats?.totalOrders || 0,
-                  sub: `${stats?.processingOrdersCount || 0} in active processing`,
-                  icon: Package,
+                  label: "Total Units Sold",
+                  value: `${Number(stats?.totalItemsSold || 0).toLocaleString("en-IN")} pcs`,
+                  sub: `${stats?.totalOrders || 0} customer orders placed`,
+                  icon: ShoppingBag,
                   color: "from-indigo-500 to-blue-500",
                 },
                 {
-                  label: "Active Products",
-                  value: stats?.totalProducts || products.length || 0,
-                  sub: `${stats?.lowStockCount || 0} low on stock (<=5)`,
-                  icon: ShoppingBag,
+                  label: "Average Order Value",
+                  value: `₹${Number(stats?.averageOrderValue || 0).toLocaleString("en-IN")}`,
+                  sub: "Across active customer checkouts",
+                  icon: TrendingUp,
                   color: "from-emerald-500 to-teal-500",
                 },
                 {
-                  label: "Registered Users",
-                  value: stats?.totalUsers || users.length || 0,
-                  sub: "Verified customer accounts",
-                  icon: Users,
+                  label: "Active Products Catalog",
+                  value: stats?.totalProducts || products.length || 0,
+                  sub: `${stats?.lowStockCount || 0} low on stock (<=5 units)`,
+                  icon: Package,
                   color: "from-purple-500 to-pink-500",
                 },
               ].map((card, idx) => {
@@ -487,6 +483,58 @@ export default function AdminDashboard() {
                   </div>
                 );
               })}
+            </div>
+
+            {/* Orders Fulfillment Summary Banner */}
+            <div className="rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                  Live Order Fulfillment Pipeline
+                </h4>
+                <button
+                  onClick={() => setActiveTab("orders")}
+                  className="text-xs font-bold text-amber-500 hover:underline"
+                >
+                  View All Orders →
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center">
+                <div className="p-3 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/40">
+                  <div className="text-xl font-black text-amber-600 dark:text-amber-400">
+                    {stats?.pendingOrdersCount || 0}
+                  </div>
+                  <div className="text-[11px] font-bold text-neutral-500 mt-0.5">Pending</div>
+                </div>
+
+                <div className="p-3 rounded-2xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/40">
+                  <div className="text-xl font-black text-blue-600 dark:text-blue-400">
+                    {stats?.processingOrdersCount || 0}
+                  </div>
+                  <div className="text-[11px] font-bold text-neutral-500 mt-0.5">Processing</div>
+                </div>
+
+                <div className="p-3 rounded-2xl bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/40">
+                  <div className="text-xl font-black text-indigo-600 dark:text-indigo-400">
+                    {stats?.shippedOrdersCount || 0}
+                  </div>
+                  <div className="text-[11px] font-bold text-neutral-500 mt-0.5">In Transit</div>
+                </div>
+
+                <div className="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/40">
+                  <div className="text-xl font-black text-emerald-600 dark:text-emerald-400">
+                    {stats?.deliveredOrdersCount || 0}
+                  </div>
+                  <div className="text-[11px] font-bold text-neutral-500 mt-0.5">Delivered</div>
+                </div>
+
+                <div className="p-3 rounded-2xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+                  <div className="text-xl font-black text-neutral-500">
+                    {stats?.cancelledOrdersCount || 0}
+                  </div>
+                  <div className="text-[11px] font-bold text-neutral-500 mt-0.5">Cancelled</div>
+                </div>
+              </div>
             </div>
 
             {/* Quick Management Shortcuts */}
@@ -605,11 +653,11 @@ export default function AdminDashboard() {
                           </td>
                           <td className="py-4 px-6">
                             <span className="font-black text-neutral-900 dark:text-white">
-                              ${prod.discountPrice > 0 ? prod.discountPrice : prod.price}
+                              ₹{Number(prod.discountPrice > 0 ? prod.discountPrice : prod.price).toLocaleString("en-IN")}
                             </span>
                             {prod.discountPrice > 0 && (
                               <span className="text-[10px] text-neutral-400 line-through ml-1.5">
-                                ${prod.price}
+                                ₹{Number(prod.price).toLocaleString("en-IN")}
                               </span>
                             )}
                           </td>
@@ -699,7 +747,7 @@ export default function AdminDashboard() {
                           </div>
                         </td>
                         <td className="py-4 px-6 font-black text-neutral-900 dark:text-white text-sm">
-                          ${ord.totalAmount}
+                          ₹{Number(ord.totalAmount).toLocaleString("en-IN")}
                         </td>
                         <td className="py-4 px-6">
                           <span className="font-bold text-neutral-700 dark:text-neutral-300">
@@ -830,26 +878,26 @@ export default function AdminDashboard() {
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   <div>
-                    <label className="block text-xs font-bold mb-1">Price ($) *</label>
+                    <label className="block text-xs font-bold mb-1">Price (₹) *</label>
                     <input
                       type="number"
                       required
                       min="0"
                       value={productForm.price}
                       onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
-                      placeholder="199"
+                      placeholder="2499"
                       className="w-full px-3 py-2.5 rounded-2xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-xs font-bold"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold mb-1">Discount Price ($)</label>
+                    <label className="block text-xs font-bold mb-1">Discount Price (₹)</label>
                     <input
                       type="number"
                       min="0"
                       value={productForm.discountPrice}
                       onChange={(e) => setProductForm({ ...productForm, discountPrice: e.target.value })}
-                      placeholder="149"
+                      placeholder="1999"
                       className="w-full px-3 py-2.5 rounded-2xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-xs font-bold"
                     />
                   </div>

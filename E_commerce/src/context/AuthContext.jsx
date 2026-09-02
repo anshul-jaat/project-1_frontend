@@ -18,6 +18,18 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const { success, error, info } = useToast();
 
+  // Logout handler
+  const logout = useCallback((showToast = true) => {
+    setToken(null);
+    setUser(null);
+    localStorage.removeItem("ecom_token");
+    localStorage.removeItem("ecom_user");
+    localStorage.removeItem("ecom_pending_email");
+    if (showToast) {
+      info("Logged out successfully");
+    }
+  }, [info]);
+
   // Load user profile on mount if token exists
   const fetchProfile = useCallback(async () => {
     if (!token) {
@@ -39,7 +51,7 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, [token, logout]);
 
   useEffect(() => {
     fetchProfile();
@@ -182,18 +194,6 @@ export const AuthProvider = ({ children }) => {
       const msg = err.response?.data?.message || "Failed to change password";
       error(msg);
       return { success: false, message: msg };
-    }
-  };
-
-  // Logout handler
-  const logout = (showToast = true) => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem("ecom_token");
-    localStorage.removeItem("ecom_user");
-    localStorage.removeItem("ecom_pending_email");
-    if (showToast) {
-      info("Logged out successfully");
     }
   };
 
