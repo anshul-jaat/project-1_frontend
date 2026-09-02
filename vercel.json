@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build --prefix E_commerce",
+  "buildCommand": "cd E_commerce && npm install && npm run build",
   "outputDirectory": "E_commerce/dist",
   "rewrites": [
     {

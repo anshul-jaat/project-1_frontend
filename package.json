@@ -1,13 +1,29 @@
 {
-  "name": "ecommerce-frontend-root",
+  "name": "project-1_frontend",
   "private": true,
+  "workspaces": [
+    "E_commerce"
+  ],
   "scripts": {
-    "dev": "npm run dev --prefix E_commerce",
     "build": "npm run build --prefix E_commerce",
+    "dev": "npm run dev --prefix E_commerce",
     "start": "npm run dev --prefix E_commerce"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "axios": "^1.20.0",
+    "canvas-confetti": "^1.9.4",
+    "lucide-react": "^1.37.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.3",
     "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "oxlint": "^1.79.0",
+    "vite": "^8.2.2"
   }
 }
