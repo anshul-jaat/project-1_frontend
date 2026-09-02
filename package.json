@@ -1,13 +1,11 @@
 {
   "name": "project-1_frontend",
   "private": true,
-  "workspaces": [
-    "E_commerce"
-  ],
+  "type": "module",
   "scripts": {
-    "build": "npm run build --prefix E_commerce",
-    "dev": "npm run dev --prefix E_commerce",
-    "start": "npm run dev --prefix E_commerce"
+    "dev": "vite",
+    "build": "node -e \"const fs=require('fs'),cp=require('child_process');if(fs.existsSync('E_commerce/package.json')){cp.execSync('cd E_commerce && npm run build',{stdio:'inherit'});}else{cp.execSync('npx vite build',{stdio:'inherit'});}\"",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

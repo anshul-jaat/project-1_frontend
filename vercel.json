@@ -1,6 +1,4 @@
 {
-  "buildCommand": "cd E_commerce && npm install && npm run build",
-  "outputDirectory": "E_commerce/dist",
   "rewrites": [
     {
       "source": "/(.*)",
