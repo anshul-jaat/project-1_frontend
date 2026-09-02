@@ -16,37 +16,37 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-neutral-950 text-white border-t border-neutral-800 mt-20">
+    <footer className="bg-neutral-950 text-white border-t border-neutral-800 mt-16 sm:mt-20 w-full overflow-hidden">
       {/* Newsletter VIP Banner */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-neutral-800/80">
-        <div className="rounded-3xl bg-gradient-to-r from-neutral-900 via-neutral-900 to-neutral-800 p-8 sm:p-10 border border-neutral-700/60 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-12 border-b border-neutral-800/80">
+        <div className="rounded-3xl bg-gradient-to-r from-neutral-900 via-neutral-900 to-neutral-800 p-5 sm:p-10 border border-neutral-700/60 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
           <div className="space-y-2 max-w-lg">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-amber-400/10 text-amber-300 border border-amber-400/20">
               VIP Insiders Club
             </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            <h3 className="text-xl sm:text-3xl font-extrabold tracking-tight">
               Unlock 20% Off Your First Order
             </h3>
-            <p className="text-sm text-neutral-400">
+            <p className="text-xs sm:text-sm text-neutral-400">
               Receive private sales, early access to new designer collections, and curated style edits.
             </p>
           </div>
 
-          <form onSubmit={handleSubscribe} className="flex w-full md:w-auto max-w-md gap-2">
-            <div className="relative flex-1">
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row w-full md:w-auto max-w-md gap-2.5">
+            <div className="relative flex-1 w-full">
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address..."
-                className="w-full pl-10 pr-4 py-3 rounded-2xl bg-neutral-950/80 border border-neutral-700 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 transition-colors"
+                className="w-full pl-10 pr-4 py-3 rounded-2xl bg-neutral-950/80 border border-neutral-700 text-xs sm:text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 transition-colors"
               />
               <Mail className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
             </div>
             <button
               type="submit"
-              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 font-bold text-sm hover:from-amber-300 hover:to-amber-400 transition-all flex items-center gap-1.5 shrink-0"
+              className="w-full sm:w-auto justify-center px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 font-bold text-xs sm:text-sm hover:from-amber-300 hover:to-amber-400 transition-all flex items-center gap-1.5 shrink-0"
             >
               <span>Join</span>
               <ArrowRight className="w-4 h-4" />
@@ -56,7 +56,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
         {/* Brand Bio */}
         <div className="lg:col-span-2 space-y-4">
           <Link to="/" className="flex items-center gap-2.5">

@@ -29,10 +29,10 @@ function AppLayout() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-neutral-50/50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans selection:bg-amber-500 selection:text-black">
+    <div className="flex flex-col min-h-screen w-full max-w-full overflow-x-hidden bg-neutral-50/50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans selection:bg-amber-500 selection:text-black">
       <Navbar onSearch={handleSearch} searchQuery={searchQuery} />
 
-      <div className="flex-1">
+      <div className="flex-1 w-full max-w-full overflow-x-hidden">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

@@ -46,24 +46,24 @@ export default function Navbar({ onSearch, searchQuery }) {
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/80 dark:bg-neutral-950/80 border-b border-neutral-200/80 dark:border-neutral-800/80 transition-all duration-300">
       {/* Top Banner Notice */}
-      <div className="bg-gradient-to-r from-amber-500 via-rose-500 to-indigo-600 text-white text-xs font-semibold py-1.5 px-4 text-center tracking-wide flex items-center justify-center gap-2">
-        <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-        <span>Grand Launch Special: Get 20% OFF using code <strong>SAVE20</strong> at checkout</span>
-        <span className="hidden sm:inline">• Free Express Delivery over ₹999</span>
+      <div className="bg-gradient-to-r from-amber-500 via-rose-500 to-indigo-600 text-white text-[11px] sm:text-xs font-semibold py-1.5 px-3 text-center tracking-wide flex items-center justify-center gap-1.5 w-full overflow-hidden">
+        <Sparkles className="w-3.5 h-3.5 animate-pulse shrink-0" />
+        <span className="truncate">Grand Launch: 20% OFF with code <strong>SAVE20</strong></span>
+        <span className="hidden md:inline">• Free Express Delivery over ₹999</span>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18 gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full">
+        <div className="flex items-center justify-between h-16 sm:h-18 gap-2 sm:gap-4">
           {/* Brand Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-neutral-900 via-neutral-800 to-neutral-700 dark:from-neutral-100 dark:to-neutral-300 flex items-center justify-center shadow-lg shadow-black/10 group-hover:scale-105 transition-transform duration-300">
-              <ShoppingBag className="w-5 h-5 text-white dark:text-neutral-950" />
+          <Link to="/" className="flex items-center gap-2 group shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-neutral-900 via-neutral-800 to-neutral-700 dark:from-neutral-100 dark:to-neutral-300 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
+              <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-white dark:text-neutral-950" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-neutral-950 via-neutral-800 to-neutral-600 dark:from-white dark:to-neutral-400 bg-clip-text text-transparent">
-                LUMINA<span className="text-amber-500 font-serif italic text-base ml-0.5">luxe</span>
+              <span className="text-lg sm:text-xl font-extrabold tracking-tight bg-gradient-to-r from-neutral-950 via-neutral-800 to-neutral-600 dark:from-white dark:to-neutral-400 bg-clip-text text-transparent">
+                LUMINA<span className="text-amber-500 font-serif italic text-sm sm:text-base ml-0.5">luxe</span>
               </span>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-400 -mt-1">
+              <span className="text-[9px] uppercase font-bold tracking-widest text-neutral-400 -mt-1 hidden xs:inline">
                 E-Commerce
               </span>
             </div>
@@ -97,27 +97,27 @@ export default function Navbar({ onSearch, searchQuery }) {
           </form>
 
           {/* Right Navigation Actions */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Admin Dashboard Link (Only visible if role === admin in DB) */}
             {isAdmin && (
               <Link
                 to="/admin"
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-950 text-xs font-bold shadow-md hover:bg-neutral-800 transition-all duration-200"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-950 text-xs font-bold shadow-md hover:bg-neutral-800 transition-all duration-200"
               >
                 <Layers className="w-3.5 h-3.5 text-amber-400" />
-                <span className="hidden sm:inline">Admin Portal</span>
+                <span>Admin</span>
               </Link>
             )}
 
             {/* Cart Icon & Live Count */}
             <Link
               to="/cart"
-              className="relative p-2.5 rounded-2xl bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200/80 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 transition-all duration-200"
+              className="relative p-2 sm:p-2.5 rounded-2xl bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200/80 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 transition-all duration-200"
               aria-label="View Cart"
             >
-              <ShoppingBag className="w-5 h-5" />
+              <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
               {itemCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-gradient-to-r from-rose-500 to-amber-500 text-white text-[11px] font-black flex items-center justify-center shadow-md animate-in zoom-in">
+                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-r from-rose-500 to-amber-500 text-white text-[10px] sm:text-[11px] font-black flex items-center justify-center shadow-md animate-in zoom-in">
                   {itemCount > 99 ? "99+" : itemCount}
                 </span>
               )}
@@ -128,16 +128,16 @@ export default function Navbar({ onSearch, searchQuery }) {
               <div className="relative">
                 <button
                   onClick={() => setProfileDropdownOpen((prev) => !prev)}
-                  className="flex items-center gap-2 p-1.5 pr-2.5 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800 transition-all duration-200"
+                  className="flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 pr-2 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800 transition-all duration-200"
                 >
                   {user?.profilePic ? (
                     <img
                       src={user.profilePic}
                       alt={user.first_name || "Profile"}
-                      className="w-8 h-8 rounded-xl object-cover ring-2 ring-amber-500/30"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl object-cover ring-2 ring-amber-500/30"
                     />
                   ) : (
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 text-white font-bold text-xs flex items-center justify-center shadow-inner">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 text-white font-bold text-xs flex items-center justify-center shadow-inner">
                       {user?.first_name ? user.first_name[0].toUpperCase() : "U"}
                     </div>
                   )}
@@ -212,20 +212,29 @@ export default function Navbar({ onSearch, searchQuery }) {
                 )}
               </div>
             ) : (
-              <div className="flex items-center gap-2">
+              <>
+                <div className="hidden sm:flex items-center gap-2">
+                  <Link
+                    to="/login"
+                    className="px-3.5 py-2 rounded-2xl text-xs font-bold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-200"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="px-4 py-2 rounded-2xl bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 text-xs font-bold shadow-md hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-200"
+                  >
+                    Register
+                  </Link>
+                </div>
                 <Link
                   to="/login"
-                  className="px-3.5 py-2 rounded-2xl text-xs font-bold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-200"
+                  className="sm:hidden p-2 rounded-2xl bg-neutral-100 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200"
+                  aria-label="Sign In"
                 >
-                  Sign In
+                  <User className="w-4 h-4" />
                 </Link>
-                <Link
-                  to="/register"
-                  className="px-4 py-2 rounded-2xl bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 text-xs font-bold shadow-md hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-200"
-                >
-                  Register
-                </Link>
-              </div>
+              </>
             )}
 
             {/* Mobile Menu Toggle Button */}
@@ -279,13 +288,32 @@ export default function Navbar({ onSearch, searchQuery }) {
               <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3 pointer-events-none" />
             </form>
 
-            <div className="flex flex-col gap-2">
+            {!isAuthenticated && (
+              <div className="grid grid-cols-2 gap-2 mb-4 pb-4 border-b border-neutral-100 dark:border-neutral-800">
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center py-2.5 rounded-2xl bg-neutral-100 dark:bg-neutral-800 text-xs font-bold text-neutral-800 dark:text-neutral-200"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center py-2.5 rounded-2xl bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 text-xs font-bold shadow-md"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+
+            <div className="flex flex-col gap-1.5">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-xl text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900"
+                  className="px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
                 >
                   {link.name}
                 </Link>
@@ -294,7 +322,7 @@ export default function Navbar({ onSearch, searchQuery }) {
                 <Link
                   to="/admin"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-xl text-sm font-bold text-amber-600 bg-amber-50 dark:bg-amber-950/40"
+                  className="px-3.5 py-2.5 rounded-xl text-sm font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40"
                 >
                   ⚡ Admin Dashboard
                 </Link>
