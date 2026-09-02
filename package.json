@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node -e \"const fs=require('fs'),cp=require('child_process');if(fs.existsSync('E_commerce/package.json')){cp.execSync('cd E_commerce && npm run build',{stdio:'inherit'});}else{cp.execSync('npx vite build',{stdio:'inherit'});}\"",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -23,5 +23,8 @@
     "@vitejs/plugin-react": "^6.1.0",
     "oxlint": "^1.79.0",
     "vite": "^8.2.2"
+  },
+  "optionalDependencies": {
+    "lightningcss-linux-x64-gnu": "^1.29.1"
   }
 }
